@@ -9,11 +9,13 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="3"
         android:orientation="horizontal"
         tools:layout_editor_absoluteY="56dp">
@@ -21,80 +23,172 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnHediye"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/style_circular_button" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnAlisveris"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/style_circular_button" />
+                <Button
+                    android:id="@+id/btnHediye"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/style_circular_button"
 
-            <Button
-                android:id="@+id/btnAile"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/style_circular_button" />
+                    android:drawableLeft="@drawable/gift"
+                    android:drawablePadding="-50dp"
+                    android:gravity="center"
+                    android:paddingLeft="15dip"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnAlisveris"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/style_circular_button"
+                    android:drawableLeft="@drawable/market"
+                    android:drawablePadding="-50dp"
+                    android:gravity="center"
+                    android:paddingLeft="15dip"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnAile"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/style_circular_button"
+                    android:drawableLeft="@drawable/family"
+
+                    android:drawablePadding="-50dp"
+                    android:gravity="center"
+                    android:paddingLeft="15dip"/>
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnUlasim"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/style_circular_button" />
-
-            <lecho.lib.hellocharts.view.PieChartView
-                android:id="@+id/chart"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="230dp" />
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnUlasim"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/style_circular_button"
+                    android:drawableLeft="@drawable/transport"
+                    android:drawablePadding="-50dp"
+                    android:gravity="center"
+                    android:paddingLeft="15dip"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <lecho.lib.hellocharts.view.PieChartView
+                    android:id="@+id/chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp" />
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnSosyal"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/style_circular_button" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnFatura"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/style_circular_button" />
+                <Button
+                    android:id="@+id/btnSosyal"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/style_circular_button"
+                    android:drawableLeft="@drawable/network"
+                    android:drawablePadding="-50dp"
+                    android:gravity="center"
+                    android:paddingLeft="15dip" />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/btnSaglik"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_margin="15dp"
-                android:background="@drawable/style_circular_button" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnFatura"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/style_circular_button"
+                    android:drawableLeft="@drawable/receipt"
+                    android:drawablePadding="-50dp"
+                    android:gravity="center"
+                    android:paddingLeft="15dip"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnSaglik"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/style_circular_button"
+                    android:drawableLeft="@drawable/health"
+                    android:drawablePadding="-50dp"
+                    android:gravity="center"
+                    android:paddingLeft="15dip"/>
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 
