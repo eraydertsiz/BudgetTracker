@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.3"
+        android:layout_weight="2"
         android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="181dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:text="Miktar"
+            android:textSize="30sp"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/display"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:textSize="30sp" />
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:background="#ecf0f1"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            tools:text="₺" />
     </LinearLayout>
 
     <LinearLayout
@@ -31,8 +45,8 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
-            android:text="Del"
+            android:background="@drawable/button"
+            android:text="C"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
 
@@ -42,8 +56,8 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
-            android:text="="
+            android:background="@drawable/button"
+            android:text="\u2713"
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
 
@@ -61,7 +75,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/selector"
             android:text="1"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -72,7 +86,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/selector"
             android:text="2"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -83,7 +97,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/selector"
             android:text="3"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -94,7 +108,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/operator_selector"
             android:text="/"
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
@@ -113,7 +127,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/selector"
             android:text="4"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -124,7 +138,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/selector"
             android:text="5"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -135,7 +149,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/selector"
             android:text="6"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -146,7 +160,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/operator_selector"
             android:text="-"
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
@@ -165,7 +179,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/selector"
             android:text="7"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -176,7 +190,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/selector"
             android:text="8"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -187,7 +201,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/selector"
             android:text="9"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -198,7 +212,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/operator_selector"
             android:text="x"
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
@@ -217,7 +231,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/selector"
             android:text="."
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
@@ -228,21 +242,10 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/selector"
             android:text="0"
             android:textColor="#ecf0f1"
             android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/Remainder"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="1dp"
-            android:layout_weight="0.25"
-
-            android:text="%"
-            android:textColor="#ecf0f1"
-            android:textSize="30sp" />
 
         <Button
             android:id="@+id/buttonadd"
@@ -250,12 +253,12 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:layout_weight="0.25"
-
+            android:background="@drawable/operator_selector"
             android:onClick="onClick"
             android:text="+"
             android:textColor="#ecf0f1"
             android:textSize="30sp" />
 
-</LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>
