@@ -1,6 +1,9 @@
 package com.example.budgettrackerwithbottommenu;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -19,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
@@ -28,6 +29,50 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
         PieChartView pieChartView = findViewById(R.id.chart);
-    }
+        Button tradeBtn = (Button) findViewById(R.id.btnAlisveris);
+        Button socialBtn = (Button) findViewById(R.id.btnSosyal);
+        Button transportBtn = (Button) findViewById(R.id.btnUlasim);
+        Button healthBtn = (Button) findViewById(R.id.btnSaglik);
+        Button giftBtn = (Button) findViewById(R.id.btnHediye);
+        Button billBtn = (Button) findViewById(R.id.btnFatura);
 
+        final Intent bottomSheet = new Intent(this, BottomSheetActivity.class);
+
+        tradeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(bottomSheet);
+            }
+        });
+        socialBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(bottomSheet);
+            }
+        });
+        transportBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(bottomSheet);
+            }
+        });
+        healthBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(bottomSheet);
+            }
+        });
+        giftBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(bottomSheet);
+            }
+        });
+        billBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(bottomSheet);
+            }
+        });
+    }
 }
