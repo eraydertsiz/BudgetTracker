@@ -10,6 +10,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import lecho.lib.hellocharts.view.PieChartView;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
