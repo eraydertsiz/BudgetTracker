@@ -1,131 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize">
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
-
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@id/nav_view"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:navGraph="@navigation/mobile_navigation" />
+    android:orientation="vertical">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="56dp">
 
-    <Button
-        android:id="@+id/btnAlisveris"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/style_circular_button"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="130dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnSosyal"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/style_circular_button"
-        tools:layout_editor_absoluteX="330dp"
-        tools:layout_editor_absoluteY="130dp" />
+            <Button
+                android:id="@+id/btnHediye"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/style_circular_button" />
 
-    <Button
-        android:id="@+id/btnUlasim"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/style_circular_button"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="130dp" />
+            <Button
+                android:id="@+id/btnAlisveris"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/style_circular_button" />
 
-    <Button
-        android:id="@+id/btnAile"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/style_circular_button"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="370dp" />
+            <Button
+                android:id="@+id/btnAile"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/style_circular_button" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/btnHediye"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/style_circular_button"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="250dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnSaglik"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/style_circular_button"
-        tools:layout_editor_absoluteX="330dp"
-        tools:layout_editor_absoluteY="250dp" />
+            <Button
+                android:id="@+id/btnUlasim"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/style_circular_button" />
 
-    <Button
-        android:id="@+id/btnFatura"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/style_circular_button"
-        tools:layout_editor_absoluteX="330dp"
-        tools:layout_editor_absoluteY="370dp" />
+            <lecho.lib.hellocharts.view.PieChartView
+                android:id="@+id/chart"
+                android:layout_width="match_parent"
+                android:layout_height="230dp" />
 
-    <lecho.lib.hellocharts.view.PieChartView
-        android:id="@+id/chart"
-        android:layout_width="230dp"
-        android:layout_height="230dp"
-        tools:layout_editor_absoluteX="90dp"
-        tools:layout_editor_absoluteY="200dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnSosyal"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/style_circular_button" />
+
+            <Button
+                android:id="@+id/btnFatura"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/style_circular_button" />
+
+            <Button
+                android:id="@+id/btnSaglik"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:background="@drawable/style_circular_button" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/windowBackground"
+        app:menu="@menu/bottom_nav_menu" />
 
 
-    <TextView
-        android:id="@+id/textAlisveris"
-        android:layout_width="60dp"
-        android:layout_height="20dp"
-        android:text="Alışveriş"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="105dp" />
-
-    <TextView
-        android:id="@+id/textSosyal"
-        android:layout_width="60dp"
-        android:layout_height="20dp"
-        android:text="Sosyal"
-        tools:layout_editor_absoluteX="304dp"
-        tools:layout_editor_absoluteY="105dp" />
-
-    <TextView
-        android:id="@+id/textUlasim"
-        android:layout_width="60dp"
-        android:layout_height="20dp"
-        android:text="Ulaşım"
-        tools:layout_editor_absoluteX="169dp"
-        tools:layout_editor_absoluteY="105dp" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
