@@ -1,47 +1,60 @@
 package com.example.budgettrackerwithbottommenu;
 
+import android.content.Context;
 import android.os.Bundle;
-
-
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class BottomSheetActivity extends AppCompatActivity {
+public class BottomSheetActivity extends BottomSheetDialogFragment implements View.OnClickListener {
 
     double input1 = 0, input2 = 0;
     TextView edt1;
     boolean Addition, Subtract, Multiplication, Division,  decimal;
     Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonAdd, buttonSub,
             buttonMul, buttonDivision, buttonEqual, buttonDel, buttonDot;
+    public static final String TAG = "BottomSheetActivity";
+
+
+    public static  BottomSheetActivity newInstance() {
+        return new BottomSheetActivity();
+    }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.bottomsheet, container, false);
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onViewCreated (@NonNull View view, @Nullable  Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bottomsheet);
-        //super.onCreate(savedInstanceState);
 
 
-        button0 =  findViewById(R.id.button0);
-        button1 =  findViewById(R.id.button1);
-        button2 =  findViewById(R.id.button2);
-        button3 =  findViewById(R.id.button3);
-        button4 =  findViewById(R.id.button4);
-        button5 = findViewById(R.id.button5);
-        button6 = findViewById(R.id.button6);
-        button7 = findViewById(R.id.button7);
-        button8 =  findViewById(R.id.button8);
-        button9 = findViewById(R.id.button9);
-        buttonDot =  findViewById(R.id.buttonDot);
-        buttonAdd =  findViewById(R.id.buttonadd);
-        buttonSub =  findViewById(R.id.buttonsub);
-        buttonMul =  findViewById(R.id.buttonmul);
-        buttonDivision =
-        buttonDel =  findViewById(R.id.buttonDel);
-        buttonEqual =  findViewById(R.id.buttoneql);
+       Button button0 = (Button)  getView().findViewById(R.id.button0);
+        Button button1 = (Button)  getView().findViewById(R.id.button1);
+        Button button2 = (Button)  getView().findViewById(R.id.button2);
+        Button button3 = (Button)  getView().findViewById(R.id.button3);
+        Button button4 = (Button)  getView().findViewById(R.id.button4);
+        Button button5 = (Button)  getView().findViewById(R.id.button5);
+        Button button6 = (Button)  getView().findViewById(R.id.button6);
+        Button button7 = (Button)  getView().findViewById(R.id.button7);
+        Button button8 = (Button)  getView().findViewById(R.id.button8);
+        Button button9 = (Button)  getView().findViewById(R.id.button9);
+        Button buttonDot = (Button)  getView().findViewById(R.id.buttonDot);
+        Button buttonAdd = (Button)  getView().findViewById(R.id.buttonadd);
+        Button buttonSub = (Button)  getView().findViewById(R.id.buttonsub);
+        Button buttonMul = (Button)  getView().findViewById(R.id.buttonmul);
+        Button buttonDivision = (Button)  getView().findViewById(R.id.buttondiv);
+        Button buttonDel = (Button)  getView().findViewById(R.id.buttonDel);
+        Button buttonEqual = (Button)  getView().findViewById(R.id.buttoneql);
 
-        edt1 =  findViewById(R.id.display);
+        edt1 =  getView().findViewById(R.id.display);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,16 +219,22 @@ public class BottomSheetActivity extends AppCompatActivity {
 
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (decimal) {
-                    //do nothing or you can show the error
-                } else {
-                    edt1.setText(edt1.getText() + ".");
-                    decimal = true;
-                }
-
+        public void onClick(View v) {
+            if (decimal) {
+                //do nothing or you can show the error
+            } else {
+                edt1.setText(edt1.getText() + ".");
+                decimal = true;
             }
-        });
+
+        }
+    });
+
+    }
+
+
+    @Override
+    public void onClick(View v) {
 
     }
 }
