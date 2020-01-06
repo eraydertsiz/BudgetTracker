@@ -246,20 +246,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public HashMap<String, Integer> getAmountsByCategories(){
-        HashMap<String, Integer> groupedExpenses = new HashMap<String,Integer>();
+    public HashMap<String, Double> getAmountsByCategories(){
+        HashMap<String, Double> groupedExpenses = new HashMap<String,Double>();
         SQLiteDatabase db = getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT amount,category FROM transactions", null);
+        Cursor c = db.rawQuery("SELECT amount,category_id FROM transactions", null);
 
-        int categoryColIndex = c.getColumnIndex("category");
+        int categoryColIndex = c.getColumnIndex("category_id");
         int amountColIndex = c.getColumnIndex("amount");
 
         while(c.moveToNext()){
-            if(groupedExpenses.containsKey(c.getString(categoryColIndex))){
-                groupedExpenses.put(c.getString(categoryColIndex), groupedExpenses.get(c.getString(categoryColIndex)) + c.getInt(amountColIndex));
+            if(groupedExpenses.containsKey(getCategoryNameById(c.getInt(categoryColIndex)))){
+                groupedExpenses.put(getCategoryNameById(c.getInt(categoryColIndex)), groupedExpenses.get(getCategoryNameById(c.getInt(categoryColIndex))) + c.getDouble(amountColIndex));
             }
             else{
-                groupedExpenses.put(c.getString(categoryColIndex), c.getInt(amountColIndex));
+                groupedExpenses.put(getCategoryNameById(c.getInt(categoryColIndex)), c.getDouble(amountColIndex));
             }
         }
         c.close();

@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.budgettrackerwithbottommenu.database.DatabaseHelper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,11 +19,21 @@ public class BottomSheetActivity extends AppCompatActivity {
     boolean Addition, Subtract, Multiplication, Division,  decimal;
     Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonAdd, buttonSub,
             buttonMul, buttonDivision, buttonEqual, buttonDel, buttonDot;
+
+    private String category;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bottomsheet);
         //super.onCreate(savedInstanceState);
+
+        try{
+            category = getIntent().getStringExtra("category");
+        }
+        catch(Exception e){
+            category = "Family";
+        }
 
 
         button0 =  findViewById(R.id.button0);
@@ -37,7 +50,7 @@ public class BottomSheetActivity extends AppCompatActivity {
         buttonAdd =  findViewById(R.id.buttonadd);
         buttonSub =  findViewById(R.id.buttonsub);
         buttonMul =  findViewById(R.id.buttonmul);
-        buttonDivision =
+        buttonDivision = findViewById(R.id.buttondiv);
         buttonDel =  findViewById(R.id.buttonDel);
         buttonEqual =  findViewById(R.id.buttoneql);
 
@@ -167,7 +180,12 @@ public class BottomSheetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (Addition || Subtract || Multiplication || Division ) {
-                    input2 = Float.parseFloat(edt1.getText() + "");
+                    try {
+                        input2 = Float.parseFloat(edt1.getText() + "");
+                    }
+                    catch(Exception e){
+                        Toast.makeText(getApplicationContext(), "Please enter a valid amount", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 if (Addition) {
@@ -190,6 +208,10 @@ public class BottomSheetActivity extends AppCompatActivity {
                 if (Division) {
                     edt1.setText(input1 / input2 + "");
                     Division = false;
+                }
+
+                if(addTransaction()){
+                    finish();
                 }
 
             }
@@ -218,4 +240,20 @@ public class BottomSheetActivity extends AppCompatActivity {
         });
 
     }
+
+    private boolean addTransaction(){
+
+        try{
+            String s = edt1.getText().toString();
+            double amt = Double.parseDouble(s);
+            DatabaseHelper.getDatabaseHelper(this).insertTransaction(amt, category);
+            return true;
+        }
+        catch(Exception e){
+            Toast.makeText(this, "Please enter a valid amount", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+    }
+
 }
