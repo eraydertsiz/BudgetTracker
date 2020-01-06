@@ -20,7 +20,7 @@ public class BottomSheetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bottomsheet);
-        super.onCreate(savedInstanceState);
+        //super.onCreate(savedInstanceState);
 
 
         button0 =  findViewById(R.id.button0);
