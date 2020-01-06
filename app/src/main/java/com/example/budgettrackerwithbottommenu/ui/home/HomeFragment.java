@@ -23,7 +23,7 @@ public class HomeFragment extends Fragment {
 
     private View root;
     private PieChartView pieChartView;
-    private Button tradeBtn, socialBtn, transportBtn, healthBtn, giftBtn, billBtn;
+    private Button tradeBtn, socialBtn, transportBtn, healthBtn, giftBtn, billBtn, familyBtn;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class HomeFragment extends Fragment {
         healthBtn = root.findViewById(R.id.btnSaglik);
         giftBtn = root.findViewById(R.id.btnHediye);
         billBtn = root.findViewById(R.id.btnFatura);
+        familyBtn = root.findViewById(R.id.btnAile);
     }
 
     private void registerEventHandlers(){
@@ -82,6 +83,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ((MainActivity)getActivity()).startBottomSheetActivity("Bill");
+            }
+        });
+        familyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).startBottomSheetActivity("Family");
             }
         });
     }

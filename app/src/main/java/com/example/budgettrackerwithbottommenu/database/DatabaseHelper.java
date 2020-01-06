@@ -51,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
 
         db.execSQL("INSERT INTO categories(name) " +
-                "VALUES('Trade'),('Social'),('Transportation'),('Health'),('Gift'),('Bill')");
+                "VALUES('Trade'),('Social'),('Transportation'),('Health'),('Gift'),('Bill'),('Family')");
 
         Log.d("DB_DEBUG","create database");
 
