@@ -85,10 +85,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(bottomSheet);
             }
         });
-
-         */
-
-
-
+        */
     }
+
+    public void startBottomSheetActivity(String category){
+        Intent i = new Intent(this, BottomSheetActivity.class);
+        i.putExtra("category", category);
+        startActivity(i);
+    }
+
 }
