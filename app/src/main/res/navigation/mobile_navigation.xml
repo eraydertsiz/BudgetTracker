@@ -17,4 +17,11 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.budgettrackerwithbottommenu.ui.notifications.NotificationsFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_notifications" />
+
 </navigation>
