@@ -92,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
     public void startBottomSheetActivity(String category){
         BottomSheetActivity bottomSheetFragment = new BottomSheetActivity();
         bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
+        Intent i = new Intent(this, BottomSheetActivity.class);
+        i.putExtra("category", category);
+        startActivity(i);
     }
 
 }
