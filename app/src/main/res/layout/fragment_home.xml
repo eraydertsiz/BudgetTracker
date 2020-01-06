@@ -57,7 +57,8 @@
                 android:drawableLeft="@drawable/market"
                 android:drawablePadding="-50dp"
                 android:gravity="center"
-                android:paddingLeft="15dip" />
+                android:paddingLeft="15dip"
+                android:backgroundTint="#367FBF"/>
 
             <TextView
                 android:id="@+id/textView2"
@@ -82,6 +83,7 @@
                 android:layout_margin="15dp"
                 android:background="@drawable/style_circular_button"
                 android:drawableLeft="@drawable/family"
+                android:backgroundTint="#93D962"
 
                 android:drawablePadding="-50dp"
                 android:gravity="center"
@@ -120,7 +122,8 @@
                 android:drawableLeft="@drawable/transport"
                 android:drawablePadding="-50dp"
                 android:gravity="center"
-                android:paddingLeft="15dip" />
+                android:paddingLeft="15dip"
+                android:backgroundTint="#F2622E"/>
 
             <TextView
                 android:id="@+id/textView5"
@@ -168,6 +171,7 @@
                 android:drawablePadding="-50dp"
                 android:gravity="center"
                 android:paddingLeft="15dip"
+                android:backgroundTint="#590202"
                 />
 
             <TextView
@@ -195,7 +199,8 @@
                 android:drawableLeft="@drawable/receipt"
                 android:drawablePadding="-50dp"
                 android:gravity="center"
-                android:paddingLeft="15dip" />
+                android:paddingLeft="15dip"
+                android:backgroundTint="#D9B384"/>
 
             <TextView
                 android:id="@+id/textView7"
@@ -222,7 +227,8 @@
                 android:drawableLeft="@drawable/health"
                 android:drawablePadding="-50dp"
                 android:gravity="center"
-                android:paddingLeft="15dip" />
+                android:paddingLeft="15dip"
+                android:backgroundTint="#A60321"/>
 
             <TextView
                 android:id="@+id/textView8"
