@@ -1,6 +1,9 @@
 package com.example.budgettrackerwithbottommenu;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.widget.DatePicker;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -9,7 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity   {
 
     public String category;
 
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+
+
     }
 
     public void startBottomSheetActivity(String category){
@@ -36,5 +41,6 @@ public class MainActivity extends AppCompatActivity {
         BottomSheetActivity bottomSheetFragment = new BottomSheetActivity();
         bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
     }
+
 
 }

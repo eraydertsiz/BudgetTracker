@@ -1,14 +1,17 @@
 package com.example.budgettrackerwithbottommenu;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 import com.example.budgettrackerwithbottommenu.database.DatabaseHelper;
 import com.example.budgettrackerwithbottommenu.ui.home.HomeFragment;
@@ -16,7 +19,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class BottomSheetActivity extends BottomSheetDialogFragment implements View.OnClickListener {
+import java.util.Calendar;
+
+public class BottomSheetActivity extends BottomSheetDialogFragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener
+
+    {
 
     double input1 = 0, input2 = 0;
     TextView edt1;
@@ -59,8 +66,17 @@ public class BottomSheetActivity extends BottomSheetDialogFragment implements Vi
         Button buttonDivision = (Button)  getView().findViewById(R.id.buttondiv);
         Button buttonDel = (Button)  getView().findViewById(R.id.buttonDel);
         Button buttonEqual = (Button)  getView().findViewById(R.id.buttoneql);
+        Button button_datePicker=(Button) getView().findViewById(R.id.button_date) ;
 
         edt1 =  getView().findViewById(R.id.display);
+
+        button_datePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment datePicker= new datepicker();
+                datePicker.show(getFragmentManager(),"date picker");
+            }
+        });
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -254,10 +270,18 @@ public class BottomSheetActivity extends BottomSheetDialogFragment implements Vi
         });
 
     }
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            Calendar c= Calendar.getInstance();
+            c.set(Calendar.YEAR, year);
+            c.set(Calendar.MONTH, month);
+            c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+        }
 
 
     @Override
     public void onClick(View v) {
+
 
     }
 }
