@@ -162,6 +162,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public Transaction[] getTransactionsBetween(long startTime, long endTime){
+        SQLiteDatabase db = getReadableDatabase();
+
+        Log.d("DATE_DEBUG",
+                "start: " + DateHelper.convertSecondsToCalendar(startTime).getTime().toString()
+                        + " end: " + DateHelper.convertSecondsToCalendar(endTime).getTime().toString());
+
+        Cursor c = db.rawQuery("SELECT * FROM transactions " +
+                "WHERE time >= " + startTime + " AND " +
+                "time <= " + endTime, null);
+        Transaction[] transactions = new Transaction[c.getCount()];
+
+        int index = 0;
+        while(c.moveToNext()){
+            transactions[index++] = new Transaction(
+                    c.getDouble(1),
+                    c.getInt(2),
+                    c.getInt(3),
+                    c.getInt(0)
+            );
+        }
+        c.close();
+        return transactions;
+    }
+
     public Transaction[] getLastTransactions(int count){
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM transactions ORDER BY time DESC LIMIT " + count, null);

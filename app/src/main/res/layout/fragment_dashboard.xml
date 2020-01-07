@@ -7,13 +7,26 @@
 
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingTop="48dp">
+
+        <Button
+            android:id="@+id/button_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:background="@drawable/button"
+            android:text="Görüntülenecek Tarihi Seçiniz"
+            android:textColor="#ecf0f1"
+            android:textSize="20sp"
+            android:layout_marginBottom="16dp"/>
+
         <ListView
             android:id="@+id/transactions_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:paddingBottom="24dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />

@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.budgettrackerwithbottommenu.ui.notifications.NotificationsFragment"
-        android:label="Notifications"
+        android:label="Info"
         tools:layout="@layout/fragment_notifications" />
 
 </navigation>
