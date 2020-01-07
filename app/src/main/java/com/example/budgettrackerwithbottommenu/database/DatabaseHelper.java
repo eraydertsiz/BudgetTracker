@@ -275,6 +275,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return groupedExpenses;
     }
 
+    public HashMap<String, Double> getAmountsByCategories(long startTime, long endTime){
+
+
+        HashMap<String, Double> groupedExpenses = new HashMap<String,Double>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT amount,category_id FROM transactions" +
+                " WHERE time >= " + startTime + " AND time <= " + endTime, null);
+
+        int categoryColIndex = c.getColumnIndex("category_id");
+        int amountColIndex = c.getColumnIndex("amount");
+
+        while(c.moveToNext()){
+            if(groupedExpenses.containsKey(getCategoryNameById(c.getInt(categoryColIndex)))){
+                groupedExpenses.put(getCategoryNameById(c.getInt(categoryColIndex)), groupedExpenses.get(getCategoryNameById(c.getInt(categoryColIndex))) + c.getDouble(amountColIndex));
+            }
+            else{
+                groupedExpenses.put(getCategoryNameById(c.getInt(categoryColIndex)), c.getDouble(amountColIndex));
+            }
+        }
+        c.close();
+        return groupedExpenses;
+    }
+
     public HashMap<String, Double> getAmountsByCategories(Calendar startDate, Calendar endDate){
 
         long startTime = DateHelper.convertCalendarToSeconds(startDate);

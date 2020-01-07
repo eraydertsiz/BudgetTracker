@@ -19,11 +19,13 @@ import com.example.budgettrackerwithbottommenu.MainActivity;
 import com.example.budgettrackerwithbottommenu.R;
 import com.example.budgettrackerwithbottommenu.Transaction;
 import com.example.budgettrackerwithbottommenu.database.DatabaseHelper;
+import com.example.budgettrackerwithbottommenu.utilities.DateHelper;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -146,7 +148,12 @@ public class HomeFragment extends Fragment {
         Transaction[] t = DatabaseHelper.getDatabaseHelper(getActivity()).getAllTransactions();
         //Log.d("DB_DEBUG", Transaction.transactionsToString(t));
 
-        HashMap<String, Double> amountByCategories = DatabaseHelper.getDatabaseHelper(getActivity()).getAmountsByCategories();
+
+
+        HashMap<String, Double> amountByCategories = DatabaseHelper.getDatabaseHelper(getActivity()).getAmountsByCategories(
+                DateHelper.getTodayAsSeconds(),
+                DateHelper.getEndOfTodayAsSeconds()
+        );
         Set<String> keySet =  amountByCategories.keySet();
         String[] keysArray = new String[keySet.size()];
         keySet.toArray(keysArray);

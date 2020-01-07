@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity   {
 
     public String category;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
