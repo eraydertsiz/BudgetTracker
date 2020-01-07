@@ -1,53 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="90dp"
-    android:orientation="horizontal"
-    android:weightSum="6">
+    android:layout_height="match_parent">
+
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/transactions_list_amount"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/button_date"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="125.00"
+            android:layout_margin="1dp"
+            android:background="@drawable/button"
+            android:text="Görüntülenecek Tarihi Seçiniz"
+            android:textColor="#ecf0f1"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/transactions_list_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:text="Family"
-            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/transactions_list_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:text="23/02/2020 14:34:05"
-            android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/transactions_list_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="125.00"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/transactions_list_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="Family"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/transactions_list_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="23/02/2020 14:34:05"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/transactions_list_delete_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:scaleType="centerInside"
+                android:scaleX="0.75"
+                android:scaleY="0.75"
+                android:src="@drawable/delete"
+                android:tint="#c53020" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/transactions_list_delete_button"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:adjustViewBounds="true"
-        android:background="@null"
-        android:scaleType="centerInside"
-        android:scaleX="0.75"
-        android:scaleY="0.75"
-        android:src="@drawable/delete"
-        android:tint="#c53020" />
 
 </LinearLayout>
