@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -13,23 +14,25 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.budgettrackerwithbottommenu.R;
+import com.example.budgettrackerwithbottommenu.TransactionsListAdapter;
+import com.example.budgettrackerwithbottommenu.database.DatabaseHelper;
 
 public class DashboardFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
+        ListView listView = root.findViewById(R.id.transactions_listview);
+
+        TransactionsListAdapter transactionsListAdapter = new TransactionsListAdapter(
+                getActivity(),
+                R.layout.transactions_list_row,
+                DatabaseHelper.getDatabaseHelper(getActivity()).getAllTransactions()
+        );
+        listView.setAdapter(transactionsListAdapter);
+
         return root;
     }
 }
