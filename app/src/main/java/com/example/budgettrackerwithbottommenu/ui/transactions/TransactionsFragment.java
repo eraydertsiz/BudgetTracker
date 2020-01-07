@@ -1,4 +1,4 @@
-package com.example.budgettrackerwithbottommenu.ui.dashboard;
+package com.example.budgettrackerwithbottommenu.ui.transactions;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,27 +6,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.budgettrackerwithbottommenu.DatepickerTransactionsList;
 import com.example.budgettrackerwithbottommenu.R;
 import com.example.budgettrackerwithbottommenu.TransactionsListAdapter;
 import com.example.budgettrackerwithbottommenu.database.DatabaseHelper;
-import com.example.budgettrackerwithbottommenu.datepicker;
 
 import java.util.Calendar;
-import java.util.List;
 
-public class DashboardFragment extends Fragment {
+public class TransactionsFragment extends Fragment {
 
-    public static DashboardFragment instance;
+    public static TransactionsFragment instance;
 
     View root;
     Button dateButton;
@@ -96,9 +90,9 @@ public class DashboardFragment extends Fragment {
     public void dateSelected(int year, int month, int dayOfMonth) {
         resetAdapter(year, month, dayOfMonth);
         String yearStr = "" + year;
-        String monthStr = "" + month;
+        String monthStr = "" + (month + 1);
         if(monthStr.length() == 1){
-            monthStr = "0" + (monthStr + 1);
+            monthStr = "0" + monthStr;
         }
         String dayStr = "" + dayOfMonth;
         if(dayStr.length() == 1){

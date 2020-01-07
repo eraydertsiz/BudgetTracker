@@ -1,8 +1,6 @@
 package com.example.budgettrackerwithbottommenu;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.widget.DatePicker;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity   {
 
     public void startBottomSheetActivity(String category){
         this.category = category;
-        BottomSheetActivity bottomSheetFragment = new BottomSheetActivity();
+        BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
         bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
     }
 

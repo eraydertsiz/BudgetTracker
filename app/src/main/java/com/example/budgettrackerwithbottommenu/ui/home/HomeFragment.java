@@ -1,7 +1,6 @@
 package com.example.budgettrackerwithbottommenu.ui.home;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.PieChartView;
 
-import com.example.budgettrackerwithbottommenu.BottomSheetActivity;
+import com.example.budgettrackerwithbottommenu.BottomSheetFragment;
 import com.example.budgettrackerwithbottommenu.MainActivity;
 import com.example.budgettrackerwithbottommenu.R;
 import com.example.budgettrackerwithbottommenu.Transaction;
@@ -25,7 +24,6 @@ import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,7 +46,7 @@ public class HomeFragment extends Fragment {
         getViews();
         registerEventHandlers();
 
-        BottomSheetActivity.homeFragment = this;
+        BottomSheetFragment.homeFragment = this;
 
         return root;
 

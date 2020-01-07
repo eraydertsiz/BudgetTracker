@@ -1,13 +1,10 @@
 package com.example.budgettrackerwithbottommenu;
 
-import android.app.DatePickerDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,7 +19,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class BottomSheetActivity
+public class BottomSheetFragment
         extends BottomSheetDialogFragment
         implements View.OnClickListener {
 
@@ -33,11 +30,11 @@ public class BottomSheetActivity
             button7, button8, button9, buttonAdd, buttonSub,
             buttonMul, buttonDivision, buttonEqual, buttonDel, buttonDot, button_datePicker;
     public static HomeFragment homeFragment;
-    public static final String TAG = "BottomSheetActivity";
-    public static BottomSheetActivity instance;
+    public static final String TAG = "BottomSheetFragment";
+    public static BottomSheetFragment instance;
 
-    public static  BottomSheetActivity newInstance() {
-        return new BottomSheetActivity();
+    public static BottomSheetFragment newInstance() {
+        return new BottomSheetFragment();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -59,7 +56,7 @@ public class BottomSheetActivity
 
         button_datePicker= getView().findViewById(R.id.button_date) ;
 
-        datepicker.setDate(year, month, day);
+        DatepickerBottomSheet.setDate(year, month, day);
 
         button0 = getView().findViewById(R.id.button0);
         button1 = getView().findViewById(R.id.button1);
@@ -84,7 +81,7 @@ public class BottomSheetActivity
         button_datePicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment datePicker= new datepicker();
+                DialogFragment datePicker= new DatepickerBottomSheet();
                 datePicker.show(getFragmentManager(),"date picker");
             }
         });
@@ -243,7 +240,7 @@ public class BottomSheetActivity
                     s = s.replace("₺","");
                     double amount = Double.parseDouble(s);
                     Calendar calendar = Calendar.getInstance();
-                    calendar.set(datepicker.year, datepicker.month, datepicker.dayOfMonth);
+                    calendar.set(DatepickerBottomSheet.year, DatepickerBottomSheet.month, DatepickerBottomSheet.dayOfMonth);
                     DatabaseHelper.getDatabaseHelper(getActivity()).insertTransaction(amount, ((MainActivity)getActivity()).category, DateHelper.convertCalendarToSeconds(calendar));
                     if(homeFragment == null){
                         Log.d("FRAGMENT","FRAGMENT IS NULL");

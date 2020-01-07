@@ -8,19 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.budgettrackerwithbottommenu.database.DatabaseHelper;
-import com.example.budgettrackerwithbottommenu.ui.dashboard.DashboardFragment;
-import com.example.budgettrackerwithbottommenu.utilities.DateHelper;
+import com.example.budgettrackerwithbottommenu.ui.transactions.TransactionsFragment;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class TransactionsListAdapter extends ArrayAdapter<Transaction> {
 
@@ -52,7 +48,7 @@ public class TransactionsListAdapter extends ArrayAdapter<Transaction> {
             public void onClick(View v) {
                 Log.d("DB_DELETE", "Deleting id: " + transactions[position].id);
                 DatabaseHelper.getDatabaseHelper(getContext()).removeTransaction(transactions[position].id);
-                DashboardFragment.instance.resetAdapter();
+                TransactionsFragment.instance.resetAdapter();
             }
         });
 

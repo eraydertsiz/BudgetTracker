@@ -4,15 +4,12 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.DatePicker;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import java.util.Calendar;
-
-public class datepicker extends DialogFragment {
+public class DatepickerBottomSheet extends DialogFragment {
 
     public static int year;
     public static int month;
@@ -25,11 +22,11 @@ public class datepicker extends DialogFragment {
     }
 
     public static void setDate(int year, int month, int dayOfMonth){
-        datepicker.year = year;
-        datepicker.month = month;
-        datepicker.dayOfMonth = dayOfMonth;
-        if(BottomSheetActivity.instance != null){
-            BottomSheetActivity.instance.setDateButtonText(year, month, dayOfMonth);
+        DatepickerBottomSheet.year = year;
+        DatepickerBottomSheet.month = month;
+        DatepickerBottomSheet.dayOfMonth = dayOfMonth;
+        if(BottomSheetFragment.instance != null){
+            BottomSheetFragment.instance.setDateButtonText(year, month, dayOfMonth);
         }
     }
 

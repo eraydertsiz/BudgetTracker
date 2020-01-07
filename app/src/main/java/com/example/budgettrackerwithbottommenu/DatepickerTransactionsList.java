@@ -5,7 +5,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.DatePicker;
 
-import com.example.budgettrackerwithbottommenu.ui.dashboard.DashboardFragment;
+import com.example.budgettrackerwithbottommenu.ui.transactions.TransactionsFragment;
 
 import java.util.Calendar;
 
@@ -30,11 +30,11 @@ public class DatepickerTransactionsList extends DialogFragment {
     }
 
     public static void setDate(int year, int month, int dayOfMonth){
-        //datepicker.year = year;
-        //datepicker.month = month;
-        //datepicker.dayOfMonth = dayOfMonth;
-        if(DashboardFragment.instance != null){
-            DashboardFragment.instance.dateSelected(year, month, dayOfMonth);
+        //DatepickerBottomSheet.year = year;
+        //DatepickerBottomSheet.month = month;
+        //DatepickerBottomSheet.dayOfMonth = dayOfMonth;
+        if(TransactionsFragment.instance != null){
+            TransactionsFragment.instance.dateSelected(year, month, dayOfMonth);
         }
     }
 
