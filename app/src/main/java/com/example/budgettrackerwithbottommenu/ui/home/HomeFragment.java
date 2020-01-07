@@ -1,20 +1,14 @@
 package com.example.budgettrackerwithbottommenu.ui.home;
 
-import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import lecho.lib.hellocharts.model.PieChartData;
 import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.util.ChartUtils;
@@ -26,9 +20,13 @@ import com.example.budgettrackerwithbottommenu.R;
 import com.example.budgettrackerwithbottommenu.Transaction;
 import com.example.budgettrackerwithbottommenu.database.DatabaseHelper;
 
+import java.lang.reflect.Field;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class HomeFragment extends Fragment {
@@ -38,6 +36,8 @@ public class HomeFragment extends Fragment {
     private PieChartData data;
     private Button tradeBtn, socialBtn, transportBtn, healthBtn, giftBtn, billBtn, familyBtn;
 
+    private  Map<String, Integer> categoryColors;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -45,6 +45,8 @@ public class HomeFragment extends Fragment {
 
         getViews();
         registerEventHandlers();
+
+        BottomSheetActivity.homeFragment = this;
 
         return root;
 
@@ -55,6 +57,8 @@ public class HomeFragment extends Fragment {
         super.onResume();
         getDataFromDatabase();
     }
+
+
 
     private void getViews(){
         chart = root.findViewById(R.id.chart);
@@ -112,27 +116,48 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void setChartColors(){
+    private void getCategoryColors(){
+        Field[] fields = R.color.class.getDeclaredFields();
 
+        //Create arrays for color names and values
+        String [] names = new String[fields.length];
+        int [] colors = new int [fields.length];
+
+        //iterate on the fields array, and get the needed values:
+        try {
+            for(int i=0; i<fields.length; i++) {
+                names [i] = fields[i].getName();
+                colors [i] = fields[i].getInt(null);
+            }
+        } catch (Exception ex) {
+            /* handle exception if you want to */
+        }
+
+        categoryColors = new HashMap<String, Integer>();
+
+        for(int i=0; i<colors.length; i++) {
+            categoryColors.put(names[i], colors[i]);
+        }
     }
 
-    private void getDataFromDatabase(){
+    public void getDataFromDatabase(){
+
+        getCategoryColors();
         Transaction[] t = DatabaseHelper.getDatabaseHelper(getActivity()).getAllTransactions();
-        Log.d("DB_DEBUG", Transaction.transactionsToString(t));
+        //Log.d("DB_DEBUG", Transaction.transactionsToString(t));
 
         HashMap<String, Double> amountByCategories = DatabaseHelper.getDatabaseHelper(getActivity()).getAmountsByCategories();
         Set<String> keySet =  amountByCategories.keySet();
         String[] keysArray = new String[keySet.size()];
         keySet.toArray(keysArray);
 
-        for(int i = 0; i < keysArray.length; i++){
-            Log.d("DB_DEBUG", keysArray[i] + ": " + amountByCategories.get(keysArray[i]));
-        }
+        NumberFormat formatter = new DecimalFormat("#0.00");
 
         List<SliceValue> values = new ArrayList<SliceValue>();
-        for (int i = 0; i < keysArray.length; ++i) {
+        for (int i = 0; i < keysArray.length; i++) {
             SliceValue sliceValue = new SliceValue(new Double(amountByCategories.get(keysArray[i])).floatValue(), ChartUtils.pickColor());
-            sliceValue.setLabel(keysArray[i] + ": " + sliceValue.getValue() + "₺");
+            sliceValue.setLabel(formatter.format(sliceValue.getValue()) + "₺");
+            sliceValue.setColor(getResources().getColor(categoryColors.get(keysArray[i])));
             values.add(sliceValue);
         }
 
@@ -146,7 +171,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void generateData() {
+        private void generateData() {
 
         int numValues = 6;
 
@@ -163,13 +188,6 @@ public class HomeFragment extends Fragment {
         data.setHasLabelsOutside(false);
         data.setHasCenterCircle(true);
 
-
-        /*
-().getDisplayMetrics().scaledDensity,
-                    (int) getResources().getDimension(R.dimen            Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "Roboto-Italic.ttf");
-.pie_chart_text2_size)));
-        }
-        */
         chart.setPieChartData(data);
     }
 

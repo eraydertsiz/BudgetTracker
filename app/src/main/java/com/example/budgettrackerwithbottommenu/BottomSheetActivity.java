@@ -2,14 +2,19 @@ package com.example.budgettrackerwithbottommenu;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.example.budgettrackerwithbottommenu.database.DatabaseHelper;
+import com.example.budgettrackerwithbottommenu.ui.home.HomeFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class BottomSheetActivity extends BottomSheetDialogFragment implements View.OnClickListener {
 
@@ -18,17 +23,18 @@ public class BottomSheetActivity extends BottomSheetDialogFragment implements Vi
     boolean Addition, Subtract, Multiplication, Division,  decimal;
     Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonAdd, buttonSub,
             buttonMul, buttonDivision, buttonEqual, buttonDel, buttonDot;
+    public static HomeFragment homeFragment;
     public static final String TAG = "BottomSheetActivity";
 
 
     public static  BottomSheetActivity newInstance() {
         return new BottomSheetActivity();
     }
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.bottomsheet, container, false);
     }
-
 
     @Override
     public void onViewCreated (@NonNull View view, @Nullable  Bundle savedInstanceState) {
@@ -36,7 +42,7 @@ public class BottomSheetActivity extends BottomSheetDialogFragment implements Vi
         super.onCreate(savedInstanceState);
 
 
-       Button button0 = (Button)  getView().findViewById(R.id.button0);
+        Button button0 = (Button)  getView().findViewById(R.id.button0);
         Button button1 = (Button)  getView().findViewById(R.id.button1);
         Button button2 = (Button)  getView().findViewById(R.id.button2);
         Button button3 = (Button)  getView().findViewById(R.id.button3);
@@ -205,6 +211,23 @@ public class BottomSheetActivity extends BottomSheetDialogFragment implements Vi
                     Division = false;
                 }
 
+                try{
+                    String s = edt1.getText().toString();
+                    s = s.replace("₺","");
+                    double amount = Double.parseDouble(s);
+                    DatabaseHelper.getDatabaseHelper(getActivity()).insertTransaction(amount, ((MainActivity)getActivity()).category);
+                    if(homeFragment == null){
+                        Log.d("FRAGMENT","FRAGMENT IS NULL");
+                    }
+                    else{
+                        homeFragment.getDataFromDatabase();
+                    }
+                    dismiss();
+                }
+                catch(Exception e){
+                    Toast.makeText(getContext(),"Please enter a valid amount", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -219,16 +242,16 @@ public class BottomSheetActivity extends BottomSheetDialogFragment implements Vi
 
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
-        public void onClick(View v) {
-            if (decimal) {
-                //do nothing or you can show the error
-            } else {
-                edt1.setText(edt1.getText() + ".");
-                decimal = true;
-            }
+            public void onClick(View v) {
+                if (decimal) {
+                    //do nothing or you can show the error
+                } else {
+                    edt1.setText(edt1.getText() + ".");
+                    decimal = true;
+                }
 
-        }
-    });
+            }
+        });
 
     }
 
