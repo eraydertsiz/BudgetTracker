@@ -10,7 +10,7 @@ public class NotificationsViewModel extends ViewModel {
 
     public NotificationsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This project is a result of joint work of  Eray Dertsiz, Eren Kara and Ruken Boyacı");
     }
 
     public LiveData<String> getText() {
