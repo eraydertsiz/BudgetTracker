@@ -19,10 +19,14 @@ import com.example.budgettrackerwithbottommenu.database.DatabaseHelper;
 
 public class DashboardFragment extends Fragment {
 
+    public static DashboardFragment instance;
+    View root;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        instance = this;
+        root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         ListView listView = root.findViewById(R.id.transactions_listview);
 
@@ -35,4 +39,18 @@ public class DashboardFragment extends Fragment {
 
         return root;
     }
+
+    public void resetAdapter(){
+
+        ListView listView = root.findViewById(R.id.transactions_listview);
+
+        TransactionsListAdapter transactionsListAdapter = new TransactionsListAdapter(
+                getActivity(),
+                R.layout.transactions_list_row,
+                DatabaseHelper.getDatabaseHelper(getActivity()).getAllTransactions()
+        );
+        listView.setAdapter(transactionsListAdapter);
+
+    }
+
 }

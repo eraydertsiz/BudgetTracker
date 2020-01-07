@@ -2,6 +2,7 @@ package com.example.budgettrackerwithbottommenu;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.budgettrackerwithbottommenu.database.DatabaseHelper;
+import com.example.budgettrackerwithbottommenu.ui.dashboard.DashboardFragment;
 import com.example.budgettrackerwithbottommenu.utilities.DateHelper;
 
 import java.text.DecimalFormat;
@@ -40,14 +42,23 @@ public class TransactionsListAdapter extends ArrayAdapter<Transaction> {
 
 
         convertView = inflater.inflate(R.layout.transactions_list_row, null);
-        TextView amountText = (TextView) convertView.findViewById(R.id.transactions_list_amount);
-        TextView categoryText = (TextView) convertView.findViewById(R.id.transactions_list_category);
-        TextView dateText = (TextView) convertView.findViewById(R.id.transactions_list_date);
-        ImageButton deleteButton = (ImageButton) convertView.findViewById(R.id.transactions_list_delete_button);
+        TextView amountText = convertView.findViewById(R.id.transactions_list_amount);
+        TextView categoryText = convertView.findViewById(R.id.transactions_list_category);
+        TextView dateText = convertView.findViewById(R.id.transactions_list_date);
+        ImageButton deleteButton = convertView.findViewById(R.id.transactions_list_delete_button);
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("DB_DELETE", "Deleting id: " + transactions[position].id);
+                DatabaseHelper.getDatabaseHelper(getContext()).removeTransaction(transactions[position].id);
+                DashboardFragment.instance.resetAdapter();
+            }
+        });
 
         amountText.setText(formatter.format(transactions[position].amount) + "₺");
         categoryText.setText(DatabaseHelper.getDatabaseHelper(activity).getCategoryNameById(transactions[position].category));
-        dateText.setText(transactions[position].getStringRepresentationOfDate());
+        dateText.setText(transactions[position].getStringOnlyDatePart());
 
         return convertView;
     }

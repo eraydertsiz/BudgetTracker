@@ -8,9 +8,13 @@ public class DateHelper {
         return System.currentTimeMillis() / 1000L;
     }
 
+    public static Calendar getToday(){
+        return Calendar.getInstance();
+    }
+
     public static Calendar convertSecondsToCalendar(long seconds){
         Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(seconds);
+        cal.setTimeInMillis(seconds * 1000);
         return cal;
     }
 

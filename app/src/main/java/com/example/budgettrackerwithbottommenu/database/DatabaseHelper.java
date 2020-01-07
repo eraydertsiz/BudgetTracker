@@ -106,6 +106,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void removeTransaction(int id){
+
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete("transactions", "id=?", new String[]{""+id});
+
+    }
+
     public Transaction[] getAllTransactions(){
         SQLiteDatabase db = getReadableDatabase();
 
@@ -132,7 +139,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long startTime = DateHelper.convertCalendarToSeconds(startDate);
         long endTime = DateHelper.convertCalendarToSeconds(endDate);
 
-        Log.d("DATE_DEBUG", "start: " + startTime + " end: " + endTime);
+        Log.d("DATE_DEBUG",
+                "start: " + DateHelper.convertSecondsToCalendar(startTime).getTime().toString()
+                + " end: " + DateHelper.convertSecondsToCalendar(endTime).getTime().toString());
 
         Cursor c = db.rawQuery("SELECT * FROM transactions " +
                 "WHERE time >= " + startTime + " AND " +
@@ -250,6 +259,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         HashMap<String, Double> groupedExpenses = new HashMap<String,Double>();
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT amount,category_id FROM transactions", null);
+
+        int categoryColIndex = c.getColumnIndex("category_id");
+        int amountColIndex = c.getColumnIndex("amount");
+
+        while(c.moveToNext()){
+            if(groupedExpenses.containsKey(getCategoryNameById(c.getInt(categoryColIndex)))){
+                groupedExpenses.put(getCategoryNameById(c.getInt(categoryColIndex)), groupedExpenses.get(getCategoryNameById(c.getInt(categoryColIndex))) + c.getDouble(amountColIndex));
+            }
+            else{
+                groupedExpenses.put(getCategoryNameById(c.getInt(categoryColIndex)), c.getDouble(amountColIndex));
+            }
+        }
+        c.close();
+        return groupedExpenses;
+    }
+
+    public HashMap<String, Double> getAmountsByCategories(Calendar startDate, Calendar endDate){
+
+        long startTime = DateHelper.convertCalendarToSeconds(startDate);
+        long endTime = DateHelper.convertCalendarToSeconds(endDate);
+
+        HashMap<String, Double> groupedExpenses = new HashMap<String,Double>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT amount,category_id FROM transactions" +
+                " WHERE time >= " + startTime + " AND time <= " + endTime, null);
 
         int categoryColIndex = c.getColumnIndex("category_id");
         int amountColIndex = c.getColumnIndex("amount");

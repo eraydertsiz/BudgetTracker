@@ -1,5 +1,8 @@
 package com.example.budgettrackerwithbottommenu;
 
+import com.example.budgettrackerwithbottommenu.utilities.DateHelper;
+
+import java.util.Calendar;
 import java.util.Date;
 
 public class Transaction {
@@ -37,6 +40,22 @@ public class Transaction {
 
     public String getStringRepresentationOfDate(){
         return new Date(date * 1000).toString();
+    }
+
+    public String getStringOnlyDatePart(){
+
+        Calendar cal = DateHelper.convertSecondsToCalendar(date);
+        String year = "" + cal.get(Calendar.YEAR);
+        String month = "" + (cal.get(Calendar.MONTH) + 1);
+        if(month.length() == 1){
+            month = "0" + month;
+        }
+        String day = "" + cal.get(Calendar.DAY_OF_MONTH);
+        if(day.length() == 1){
+            day = "0" + day;
+        }
+        return day + "/" + month + "/" + year;
+
     }
 
 

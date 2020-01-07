@@ -15,24 +15,26 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.budgettrackerwithbottommenu.database.DatabaseHelper;
 import com.example.budgettrackerwithbottommenu.ui.home.HomeFragment;
+import com.example.budgettrackerwithbottommenu.utilities.DateHelper;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class BottomSheetActivity extends BottomSheetDialogFragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener
-
-    {
+public class BottomSheetActivity
+        extends BottomSheetDialogFragment
+        implements View.OnClickListener {
 
     double input1 = 0, input2 = 0;
     TextView edt1;
     boolean Addition, Subtract, Multiplication, Division,  decimal;
-    Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonAdd, buttonSub,
-            buttonMul, buttonDivision, buttonEqual, buttonDel, buttonDot;
+    Button button0, button1, button2, button3, button4, button5, button6,
+            button7, button8, button9, buttonAdd, buttonSub,
+            buttonMul, buttonDivision, buttonEqual, buttonDel, buttonDot, button_datePicker;
     public static HomeFragment homeFragment;
     public static final String TAG = "BottomSheetActivity";
-
+    public static BottomSheetActivity instance;
 
     public static  BottomSheetActivity newInstance() {
         return new BottomSheetActivity();
@@ -48,25 +50,34 @@ public class BottomSheetActivity extends BottomSheetDialogFragment implements Vi
         super.onViewCreated(view, savedInstanceState);
         super.onCreate(savedInstanceState);
 
+        instance = this;
 
-        Button button0 = (Button)  getView().findViewById(R.id.button0);
-        Button button1 = (Button)  getView().findViewById(R.id.button1);
-        Button button2 = (Button)  getView().findViewById(R.id.button2);
-        Button button3 = (Button)  getView().findViewById(R.id.button3);
-        Button button4 = (Button)  getView().findViewById(R.id.button4);
-        Button button5 = (Button)  getView().findViewById(R.id.button5);
-        Button button6 = (Button)  getView().findViewById(R.id.button6);
-        Button button7 = (Button)  getView().findViewById(R.id.button7);
-        Button button8 = (Button)  getView().findViewById(R.id.button8);
-        Button button9 = (Button)  getView().findViewById(R.id.button9);
-        Button buttonDot = (Button)  getView().findViewById(R.id.buttonDot);
-        Button buttonAdd = (Button)  getView().findViewById(R.id.buttonadd);
-        Button buttonSub = (Button)  getView().findViewById(R.id.buttonsub);
-        Button buttonMul = (Button)  getView().findViewById(R.id.buttonmul);
-        Button buttonDivision = (Button)  getView().findViewById(R.id.buttondiv);
-        Button buttonDel = (Button)  getView().findViewById(R.id.buttonDel);
-        Button buttonEqual = (Button)  getView().findViewById(R.id.buttoneql);
-        Button button_datePicker=(Button) getView().findViewById(R.id.button_date) ;
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+
+        button_datePicker= getView().findViewById(R.id.button_date) ;
+
+        datepicker.setDate(year, month, day);
+
+        button0 = getView().findViewById(R.id.button0);
+        button1 = getView().findViewById(R.id.button1);
+        button2 = getView().findViewById(R.id.button2);
+        button3 = getView().findViewById(R.id.button3);
+        button4 = getView().findViewById(R.id.button4);
+        button5 = getView().findViewById(R.id.button5);
+        button6 = getView().findViewById(R.id.button6);
+        button7 = getView().findViewById(R.id.button7);
+        button8 = getView().findViewById(R.id.button8);
+        button9 = getView().findViewById(R.id.button9);
+        buttonDot = getView().findViewById(R.id.buttonDot);
+        buttonAdd = getView().findViewById(R.id.buttonadd);
+        buttonSub = getView().findViewById(R.id.buttonsub);
+        buttonMul = getView().findViewById(R.id.buttonmul);
+        buttonDivision = getView().findViewById(R.id.buttondiv);
+        buttonDel = getView().findViewById(R.id.buttonDel);
+        buttonEqual = getView().findViewById(R.id.buttoneql);
 
         edt1 =  getView().findViewById(R.id.display);
 
@@ -231,7 +242,9 @@ public class BottomSheetActivity extends BottomSheetDialogFragment implements Vi
                     String s = edt1.getText().toString();
                     s = s.replace("₺","");
                     double amount = Double.parseDouble(s);
-                    DatabaseHelper.getDatabaseHelper(getActivity()).insertTransaction(amount, ((MainActivity)getActivity()).category);
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(datepicker.year, datepicker.month, datepicker.dayOfMonth);
+                    DatabaseHelper.getDatabaseHelper(getActivity()).insertTransaction(amount, ((MainActivity)getActivity()).category, DateHelper.convertCalendarToSeconds(calendar));
                     if(homeFragment == null){
                         Log.d("FRAGMENT","FRAGMENT IS NULL");
                     }
@@ -270,14 +283,22 @@ public class BottomSheetActivity extends BottomSheetDialogFragment implements Vi
         });
 
     }
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            Calendar c= Calendar.getInstance();
-            c.set(Calendar.YEAR, year);
-            c.set(Calendar.MONTH, month);
-            c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+
+    public void setDateButtonText(int year, int month, int day){
+
+        String yearStr = "" + year;
+        String monthStr = "" + (month + 1);
+        if(monthStr.length() == 1){
+            monthStr = "0" + monthStr;
+        }
+        String dayStr = "" + day;
+        if(dayStr.length() == 1){
+            dayStr = "0" + dayStr;
         }
 
+        button_datePicker.setText(dayStr + "/" + monthStr + "/" + yearStr);
+
+    }
 
     @Override
     public void onClick(View v) {
