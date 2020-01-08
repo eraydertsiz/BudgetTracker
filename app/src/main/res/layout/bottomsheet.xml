@@ -18,7 +18,7 @@
             android:layout_width="181dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:text="Miktar"
+            android:text="Miktar(₺): "
             android:textSize="30sp"
             android:visibility="visible" />
 
@@ -30,7 +30,7 @@
             android:background="@null"
             android:textAlignment="center"
             android:textSize="30sp"
-            android:text="₺"
+            android:text=""
             />
     </LinearLayout>
 

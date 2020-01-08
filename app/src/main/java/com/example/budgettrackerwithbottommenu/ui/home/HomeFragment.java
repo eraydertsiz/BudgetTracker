@@ -143,15 +143,17 @@ public class HomeFragment extends Fragment {
     public void getDataFromDatabase(){
 
         getCategoryColors();
-        Transaction[] t = DatabaseHelper.getDatabaseHelper(getActivity()).getAllTransactions();
+        //Transaction[] t = DatabaseHelper.getDatabaseHelper(getActivity()).getAllTransactions();
         //Log.d("DB_DEBUG", Transaction.transactionsToString(t));
-
 
 
         HashMap<String, Double> amountByCategories = DatabaseHelper.getDatabaseHelper(getActivity()).getAmountsByCategories(
                 DateHelper.getTodayAsSeconds(),
                 DateHelper.getEndOfTodayAsSeconds()
         );
+        if(amountByCategories.isEmpty())
+            return;
+
         Set<String> keySet =  amountByCategories.keySet();
         String[] keysArray = new String[keySet.size()];
         keySet.toArray(keysArray);
